@@ -1,0 +1,37 @@
+{{- $page := . }}
+{{- with $page.FirstSection }}
+  <nav>
+    <ul>
+      {{- partial "inline/section_nav/walk.html" (dict "page" $page "pages" .Pages) }}
+    </ul>
+  </nav>
+{{- end }}
+
+{{- define "partials/inline/section_nav/walk.html" }}
+  {{- $page := .page }}
+  {{- range .pages }}
+    {{- $attrs := dict "href" .RelPermalink }}
+    {{- if eq $page . }}
+      {{- $attrs = merge $attrs (dict "class" "nav-link active" "aria-current" "page") }}
+    {{- else if .IsAncestor $page }}
+      {{- $attrs = merge $attrs (dict "class" "nav-link ancestor" "aria-current" "true") }}
+    {{- else }}
+      {{- $attrs = merge $attrs (dict "class" "nav-link") }}
+    {{- end }}
+    <li>
+      <a
+        {{- range $k, $v := $attrs }}
+          {{- with $v }}
+            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- end }}
+        {{- end -}}
+        >{{ or (T .Section) .Title | safeHTML }}</a
+      >
+      {{- if .IsSection }}
+        <ul>
+            {{- partial "inline/section_nav/walk.html" (dict "page" $page "pages" .Pages) }}
+        </ul>
+      {{- end }}
+    </li>
+  {{- end }}
+{{- end }}

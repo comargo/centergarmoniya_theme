@@ -1,0 +1,19 @@
+name = 'Center Garmoniya'
+license = 'MIT'
+licenselink = 'https://github.com/comargo/centergarmoniya_theme/LICENSE'
+description = 'Theme for centergarmoniya.ru site'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/comargo/centergarmoniya_theme'
+
+# If you have a running demo of the theme
+demosite = 'https://comargo.github.io/centergarmoniya_theme'
+
+# Taxonomy terms
+tags = []
+features = []
+
+# If the theme has a single author
+[author]
+  name = 'Cyril Margorin'
+  homepage = 'https://comargo.github.io/'
