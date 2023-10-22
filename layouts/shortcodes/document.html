@@ -1,0 +1,8 @@
+{{ $docRef := .Get 0 }}
+{{ with .Page.Resources.GetMatch $docRef }}
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  {{ else }}
+    {{ errorf "Parsing page %#v: Document %#v not found!" .Page.File.Path $docRef }}
+  {{ end }}
+
+    
